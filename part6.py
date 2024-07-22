@@ -18,9 +18,9 @@ class PeekableIterator:
 
     def peek(self):
         #return self.iterable[self.counter+1]
-        if self.counter >= len(self.iterable):
+        if self.counter < len(self.iterable):
            # return self.counter
-           return self.iterable[self.counter + 1]
+           return self.iterable[self.counter]
         else:
             raise StopIteration("Index is out of range")
 
@@ -36,9 +36,10 @@ if __name__ == '__main__':
 
      for i in run:
          print(i)
+         print("peek is :", run.peek())
          print(run.has_next())
 
-     #print("peek는", run.peek())
+
 
 
 
