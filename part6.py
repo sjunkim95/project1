@@ -26,6 +26,12 @@ class PeekableIterator:
         else:
             return True
 
-#if __name__ == '__main__':
-# run = PeekableIterator([1, 2, 3, 4, 5, 6, 7])
-#print(run.has_next())
+if __name__ == '__main__':
+     run = PeekableIterator(10)
+     for i in run:
+         print(i)
+     print(run.has_next())
+     print(run.peek())
+
+
+

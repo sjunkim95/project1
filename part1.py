@@ -53,6 +53,6 @@ def call1to2(calls: {(str, str): int}) -> {str: {str: int}}:
             my_dict[dict_key] += my_inner_dict
         '''
 
-read_calls(open(r"call_data.txt", 'r'))
+print(read_calls(open(r"call_data.txt", 'r')))
 
-call1to2(read_calls(open(r"call_data.txt", 'r')))
+print(call1to2(read_calls(open(r"call_data.txt", 'r'))))
