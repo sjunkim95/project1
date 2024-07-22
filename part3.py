@@ -17,12 +17,15 @@ class NamespaceManager:
             return self.namespace[name]
 
     def delete_variable(self, name):
-        del self.namespace[name]
+        if self.namespace.get(name) is None:
+            raise KeyError('There is no given name')
+        else:
+            del self.namespace[name]
 
     def list_variables(self):
         # {a:1, b:1, c:1}
         #return [a,b,c] -> return the "list" of keys
-        pass
+        return list(self.namespace.keys())
 
     def execute_function(self, code):
         # exec(code,{}, self.variables)
