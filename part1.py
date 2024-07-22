@@ -45,7 +45,7 @@ def call1to2(calls: {(str, str): int}) -> {str: {str: int}}:
         else:
             my_dict[dict_key][inner_dict_key] = calls[my_tuple]
         """
-        print(my_dict)
+        return my_dict
 '''
         if my_inner_dict not in my_dict:
             my_dict[dict_key] = my_inner_dict
@@ -53,6 +53,6 @@ def call1to2(calls: {(str, str): int}) -> {str: {str: int}}:
             my_dict[dict_key] += my_inner_dict
         '''
 
-print(read_calls(open(r"C:\ics33\P1\P1\call_data.txt", 'r')))
+#print(read_calls(open(r"C:\ics33\P1\P1\call_data.txt", 'r')))
 
-call1to2(read_calls(open(r"C:\ics33\P1\P1\call_data.txt", 'r')))
+#call1to2(read_calls(open(r"C:\ics33\P1\P1\call_data.txt", 'r')))
