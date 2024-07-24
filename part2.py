@@ -34,18 +34,18 @@ def question1(n: dict) -> dict:
     return {v:k for k, v in n.items()}
 
 def question2(n: dict) -> dict:
-
+    '''
     my_dict = {}
     for k, v in n.items():
         if v not in my_dict:
             my_dict[v] = [k]
         else:
             my_dict[v].append(k)
-
+    '''
    # my_dict = {v:([k] if v not in my_dict else ) for k, v in n.items()}
-
-    return my_dict
-# new_dict_comp = {n:n**2 for n in numbers if n%2 == 0}
+   # return {for k,v in n.items(): my_dict.setdefault(v,[]).append(k)}
+   # return my_dict
+    return {v:[k for k in n if n[k] == v] for v in set(n.values())}
 
 '''
 new_dict_for = {}
