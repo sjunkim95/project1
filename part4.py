@@ -1,39 +1,43 @@
 def stable_stock_matching(buyers_preferences, stocks_preferences):
 
     buyers_list = list(buyers_preferences.keys())
-    matched_dict = {}
+   # print(buyers_list)
 
+    matched_dict = {}
     while buyers_list:
         buyer = buyers_list.pop(0)
-        # To loop the stock preference of the buyer
-        for stock in buyers_preferences[buyer]:
-
-            # Check if the stock is already matched
-            matched_stock = [items for items in matched_dict.items() if stock in items]
-
-            # If it had not been matched, add to dictionary to match
-            if len(matched_stock) == 0:
-                matched_dict[buyer] = stock
+     #   print("현재 Buyer는: ", buyer)
+        check = list(matched_dict.keys())
+        for new_stock in buyers_preferences[buyer]:
+            if new_stock not in matched_dict.values():
+               # print("뉴스탁과 바이어", new_stock, buyer)
+                matched_dict[buyer] = new_stock
+               # print("matched_dict", matched_dict)
                 break
-
-            # If it had been matched, compare the preference
-            elif len(matched_stock) > 0:
-                original_buyer = matched_stock[0][0]
-                original_stock_buyer_n = stocks_preferences[stock].index(original_buyer)
-                potential_stock_buyer_n = stocks_preferences[stock].index(buyer)
-
-                # If statement to compare the preference of the Buyer
-                # Check if the stock prefers the new buyer
-                if original_stock_buyer_n > potential_stock_buyer_n:
-                    # Since stock prefers the new buyer, delete the original_buyer from the dictionary
-                    # and, add the original_buyer to the buyer_list to loop again to find the stock match
-                    buyers_list.append(original_buyer)
-                    del matched_dict[original_buyer]
-                    matched_dict[buyer] = stock
+            else:
+               # print("else문")
+                if len(check) > 0:
+                    for original_buyer in check:
+                     #   print(original_buyer,"의기존 바이어의 스탁", matched_dict[original_buyer])
+                        if new_stock == matched_dict[original_buyer]:
+                            new_stock_pref = stocks_preferences[new_stock].index(buyer)
+                            original_stock_pref = stocks_preferences[new_stock].index(original_buyer)
+                         #   print("현재 바이어 넘버", new_stock_pref)
+                         #   print("기존 바이어 넘버", original_stock_pref)
+                            if original_stock_pref > new_stock_pref:
+                              #  print("들어옴")
+                                del matched_dict[original_buyer]
+                                matched_dict[buyer] = new_stock
+                              #  print(matched_dict)
+                                buyers_list.append(original_buyer)
+                                check.clear()
+                                break
+                else:
                     break
 
-    return matched_dict
 
+
+    return matched_dict
 
 buyers_preferences = {
     'Buyer1': ['StockA', 'StockB', 'StockC'],
@@ -51,10 +55,10 @@ print(stable_stock_matching(buyers_preferences, stocks_preferences))
 
 # Part 5:
 # my time space complexity will be O(n)
-# because, I have one while loop, based on key of buyers list, and one for loop of dictionary,
-# it will be O(m*n)
+# because, I have one while loop, based on key of buyers list, one for loop of dictionary, and one loop of list,
+# it will be O(m*n*n)
 # since we are calculating the time based on worst case scenario
-# The final answer will be O(n^2)
+# The final answer will be O(n^3)
 
 # I have referenced Gale-Shapely Algorithm
 """
