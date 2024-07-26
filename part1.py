@@ -34,13 +34,5 @@ def call1to2(calls: {(str, str): int}) -> {str: {str: int}}:
 
     return my_dict
 
-
-'''
-        if my_inner_dict not in my_dict:
-            my_dict[dict_key] = my_inner_dict
-        else:
-            my_dict[dict_key] += my_inner_dict
-        '''
-
 #print(read_calls("calls.txt"))
 #print(call1to2(read_calls("calls.txt")))

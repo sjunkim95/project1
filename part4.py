@@ -1,43 +1,40 @@
 def stable_stock_matching(buyers_preferences, stocks_preferences):
-
     stock_list = list(stocks_preferences.keys())
-   # print(buyers_list)
-
     matched_dict = {}
+
     while stock_list:
+
         stock = stock_list.pop(0)
-        print("현재 stock: ", stock)
+        # To check if there are matched keys and to break out of else statement
         check = list(matched_dict.keys())
+
         for new_buyer in stocks_preferences[stock]:
             if new_buyer not in matched_dict.values():
-                print("뉴스탁과 바이어", new_buyer, stock)
                 matched_dict[stock] = new_buyer
-                print("matched_dict", matched_dict)
                 break
             else:
-                print("else문")
+                # if there are matched_dict.keys()
                 if len(check) > 0:
                     for original_stock in check:
-                        print(original_stock,"의기존 바이어의 스탁", matched_dict[original_stock])
+                        print(original_stock, "의기존 바이어의 스탁", matched_dict[original_stock])
                         if new_buyer == matched_dict[original_stock]:
                             new_stock_pref = buyers_preferences[new_buyer].index(stock)
                             original_stock_pref = buyers_preferences[new_buyer].index(original_stock)
-                            print("현재 바이어 넘버", new_stock_pref)
-                            print("기존 바이어 넘버", original_stock_pref)
+                            # check the preference
                             if original_stock_pref > new_stock_pref:
-                                print("들어옴")
+                                # now delete on dictionary, and add on the stock_list
                                 del matched_dict[original_stock]
                                 matched_dict[stock] = new_buyer
-                                print(matched_dict)
+                                # append the original_stock, to rematch
                                 stock_list.append(original_stock)
+                                # clear the check to not go over else statement
                                 check.clear()
                                 break
                 else:
                     break
 
-
-
     return matched_dict
+
 
 buyers_preferences = {
     'Buyer1': ['StockA', 'StockB', 'StockC'],
