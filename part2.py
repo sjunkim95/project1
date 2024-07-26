@@ -59,6 +59,7 @@ def question3(n1: dict, n2: dict) -> dict:
 
 
 def question4(n: list) -> list:
+
     my_dict = {}
 
     for i in range(len(n)):
@@ -76,6 +77,7 @@ def question4(n: list) -> list:
 
     return my_list
 
+    return my_list
 
 print("Question1는:")
 print(question1({'a': 1, 'b': 2, 'c': 1, 'd': 2}))

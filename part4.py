@@ -16,7 +16,6 @@ def stable_stock_matching(buyers_preferences, stocks_preferences):
                 # if there are matched_dict.keys()
                 if len(check) > 0:
                     for original_stock in check:
-                        print(original_stock, "의기존 바이어의 스탁", matched_dict[original_stock])
                         if new_buyer == matched_dict[original_stock]:
                             new_stock_pref = buyers_preferences[new_buyer].index(stock)
                             original_stock_pref = buyers_preferences[new_buyer].index(original_stock)
