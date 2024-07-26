@@ -1,35 +1,35 @@
 def stable_stock_matching(buyers_preferences, stocks_preferences):
 
-    buyers_list = list(buyers_preferences.keys())
+    stock_list = list(stocks_preferences.keys())
    # print(buyers_list)
 
     matched_dict = {}
-    while buyers_list:
-        buyer = buyers_list.pop(0)
-     #   print("현재 Buyer는: ", buyer)
+    while stock_list:
+        stock = stock_list.pop(0)
+        print("현재 stock: ", stock)
         check = list(matched_dict.keys())
-        for new_stock in buyers_preferences[buyer]:
-            if new_stock not in matched_dict.values():
-               # print("뉴스탁과 바이어", new_stock, buyer)
-                matched_dict[buyer] = new_stock
-               # print("matched_dict", matched_dict)
+        for new_buyer in stocks_preferences[stock]:
+            if new_buyer not in matched_dict.values():
+                print("뉴스탁과 바이어", new_buyer, stock)
+                matched_dict[stock] = new_buyer
+                print("matched_dict", matched_dict)
                 break
             else:
-               # print("else문")
+                print("else문")
                 if len(check) > 0:
-                    for original_buyer in check:
-                     #   print(original_buyer,"의기존 바이어의 스탁", matched_dict[original_buyer])
-                        if new_stock == matched_dict[original_buyer]:
-                            new_stock_pref = stocks_preferences[new_stock].index(buyer)
-                            original_stock_pref = stocks_preferences[new_stock].index(original_buyer)
-                         #   print("현재 바이어 넘버", new_stock_pref)
-                         #   print("기존 바이어 넘버", original_stock_pref)
+                    for original_stock in check:
+                        print(original_stock,"의기존 바이어의 스탁", matched_dict[original_stock])
+                        if new_buyer == matched_dict[original_stock]:
+                            new_stock_pref = buyers_preferences[new_buyer].index(stock)
+                            original_stock_pref = buyers_preferences[new_buyer].index(original_stock)
+                            print("현재 바이어 넘버", new_stock_pref)
+                            print("기존 바이어 넘버", original_stock_pref)
                             if original_stock_pref > new_stock_pref:
-                              #  print("들어옴")
-                                del matched_dict[original_buyer]
-                                matched_dict[buyer] = new_stock
-                              #  print(matched_dict)
-                                buyers_list.append(original_buyer)
+                                print("들어옴")
+                                del matched_dict[original_stock]
+                                matched_dict[stock] = new_buyer
+                                print(matched_dict)
+                                stock_list.append(original_stock)
                                 check.clear()
                                 break
                 else:
