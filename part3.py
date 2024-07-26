@@ -1,8 +1,3 @@
-'''
-set variable -> set the name for the variable
-what
-'''
-
 class NamespaceManager:
     def __init__(self):
         self.namespace = {}
